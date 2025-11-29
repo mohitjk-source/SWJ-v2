@@ -55,8 +55,9 @@ const renderReviews = (items) => {
   }
 })();
 export interface env {
-  YOUTUBE_API_KEY: string;
+  
   YOUTUBE_CHANNEL_ID: string;
+  YOUTUBE_API_KEY: string;
   INSTAGRAM_ACCESS_TOKEN: string;
   // CACHE?: KVNamespace; // optional
 }
