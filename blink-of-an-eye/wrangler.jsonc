@@ -5,9 +5,7 @@
   
   // Project name for Wrangler
   
-  "assets": {
-    "directory": "./frontend" // static site folder
-  },
+ 
 
 
 
