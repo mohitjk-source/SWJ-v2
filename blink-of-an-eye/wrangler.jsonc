@@ -12,7 +12,7 @@
 
 
 
-  "env": {
+  "Env": {
     "production": {
       "vars": {
         "YOUTUBE_API_KEY": "AIzaSyD8by2ePwkkXzkqtJefXSSdmSD34WrMj2",
