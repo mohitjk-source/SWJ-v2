@@ -1,5 +1,6 @@
 name: Publish blink-of-an-eye
-
+name: Install Wrangler
+run: npm install -D wrangler
 on:
   push:
     branches: [ main ]
@@ -10,8 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Wrangler
-        run: npm install -D wrangler
+      
       - name: Publish to Cloudflare Pages
         run: npx wrangler pages deploy
         env:
