@@ -8,7 +8,7 @@ entry-point = "functions"    # Pages Functions directory
 
 # Optional: environment variables
 [vars]
-YOUTUBE_CHANNEL_ID = "your_channel_id_here"
+YOUTUBE_CHANNEL_ID = "UCwaM48qdZeWsII30OCMnShg"
 
 # Secrets are added via wrangler CLI
 # wrangler secret put YOUTUBE_API_KEY
