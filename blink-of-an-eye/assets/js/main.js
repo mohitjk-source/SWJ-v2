@@ -54,7 +54,7 @@ const renderReviews = (items) => {
     document.getElementById("reviewsGrid").innerHTML = "<p>Reviews unavailable right now.</p>";
   }
 })();
-export interface Env {
+export interface env {
   YOUTUBE_API_KEY: string;
   YOUTUBE_CHANNEL_ID: string;
   INSTAGRAM_ACCESS_TOKEN: string;
