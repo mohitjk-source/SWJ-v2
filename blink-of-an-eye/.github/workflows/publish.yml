@@ -1,4 +1,4 @@
-name: Publish Blink Of An Eye
+name: Publish blink-of-an-eye
 
 on:
   push:
