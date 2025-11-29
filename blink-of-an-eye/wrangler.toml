@@ -1,0 +1,15 @@
+name = "blink-of-an-eye"
+compatibility_date = "2025-11-29"
+
+# Pages project configuration
+[site]
+bucket = "./frontend"        # Static assets directory
+entry-point = "functions"    # Pages Functions directory
+
+# Optional: environment variables
+[vars]
+YOUTUBE_CHANNEL_ID = "your_channel_id_here"
+
+# Secrets are added via wrangler CLI
+# wrangler secret put YOUTUBE_API_KEY
+# wrangler secret put INSTAGRAM_ACCESS_TOKEN
