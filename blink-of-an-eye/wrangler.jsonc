@@ -2,6 +2,16 @@
   "name": "blink-of-an-eye",
   "main" : "worker/src/index.ts",
   "compatibility_date": "2025-11-29",
+  
+  // Project name for Wrangler
+  
+  "assets": {
+    "directory": "./frontend" // static site folder
+  },
+
+
+
+
   "env": {
     "production": {
       "vars": {
