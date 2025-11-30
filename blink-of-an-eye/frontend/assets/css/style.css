@@ -14,7 +14,7 @@ body {
 }
 
 a {
-  color: #a0c4ff;
+  color: #D4A9FD; /* lavender links */
   text-decoration: none;
 }
 
@@ -42,12 +42,27 @@ header {
   padding: 0 20px;
 }
 
+/* Logo */
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ff6b6b;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
 }
 
+.logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #B6F83E; /* lime green brand text */
+}
+
+/* Nav links */
 nav ul {
   list-style: none;
   display: flex;
@@ -57,6 +72,7 @@ nav ul {
 nav li a {
   font-weight: 600;
   font-size: 1rem;
+  color: #D4A9FD; /* lavender nav links */
 }
 
 /* Hero */
@@ -68,7 +84,7 @@ nav li a {
 
 .hero h1 {
   font-size: 1.8rem;
-  color: #f0f0ff;
+  color: #B6F83E; /* lime green headline */
 }
 
 /* Featured Video */
@@ -82,6 +98,7 @@ nav li a {
 .featured-video h2 {
   margin-bottom: 20px;
   font-size: 1.5rem;
+  color: #D4A9FD; /* lavender section title */
 }
 
 .video-wrapper iframe {
@@ -102,6 +119,7 @@ nav li a {
 .episodes h2 {
   margin-bottom: 20px;
   font-size: 1.5rem;
+  color: #D4A9FD;
 }
 
 .card-grid {
@@ -127,7 +145,7 @@ nav li a {
 .card h3 {
   padding: 10px;
   font-size: 1rem;
-  color: #f0f0ff;
+  color: #B6F83E; /* lime green card titles */
 }
 
 /* Reviews */
@@ -140,6 +158,7 @@ nav li a {
 .reviews h2 {
   margin-bottom: 20px;
   font-size: 1.5rem;
+  color: #D4A9FD;
 }
 
 .review-grid {
@@ -158,7 +177,7 @@ nav li a {
 .review-card h3 {
   margin-bottom: 10px;
   font-size: 1.1rem;
-  color: #ffcc70;
+  color: #B6F83E; /* lime green review titles */
 }
 
 .review-card p {
@@ -176,7 +195,7 @@ nav li a {
 
 .review-card a {
   font-weight: bold;
-  color: #a0c4ff;
+  color: #D4A9FD; /* lavender links */
 }
 
 /* Footer */
@@ -192,8 +211,8 @@ footer {
 footer button {
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #ff6b6b;
-  color: #fff;
+  background-color: #B6F83E; /* lime green button */
+  color: #0f0f1a;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -201,5 +220,14 @@ footer button {
 }
 
 footer button:hover {
-  background-color: #ff8787;
+  background-color: #D4A9FD; /* lavender hover */
+  color: #0f0f1a;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .logo img { height: 32px; }
+  .logo-text { font-size: 1.2rem; }
+  nav ul { gap: 20px; }
+  .video-wrapper iframe { height: 280px; }
 }

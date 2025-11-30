@@ -4,14 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blink Of An Eye</title>
-  <link rel="icon" href="images/favicon.ico">
+ 
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png" sizes="32x32">
+<link rel="shortcut icon" href="images/favicon.ico">
 </head>
 <body>
   <!-- Navigation -->
   <header>
     <div class="nav-container">
-      <div class="logo"><img src="images/logo.png" alt="Blink Of An Eye"/>Blink Of An Eye"</div>
+      <a href="/" class="logo">
+      <img src="images/logo.svg" alt="Blink Of An Eye logo">
+      <span class="logo-text"></span>
+    </a>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
@@ -68,9 +73,10 @@
     <div class="container px-6 py-12">
       <div class="flex items-end justify-between">
         <h2 class="text-2xl font-bold">Latest episodes</h2>
-        <a href="https://youtube.com/@BlinkOfAnEye/videos" target="_blank" rel="noopener" class="text-sm hover:opacity-80">All videos</a>
+        <a href="https://youtube.com/@soulwithoutjhol/videos" target="_blank" rel="noopener" class="text-sm hover:opacity-80">All videos</a>
       </div>
-
+      </div>
+      </section>
       <!-- Grid populated by JS -->
       <div id="episode-grid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Cards injected by fetchYouTube() -->
@@ -113,5 +119,56 @@
     <p>&copy; 2025 Blink Of An Eye. All rights reserved.</p>
     <button>Follow us</button>
   </footer>
+
+<script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // YouTube Data API placeholder: inject latest videos into #episode-grid
+    async function fetchYouTube() {
+      // Replace with your API endpoint or Worker route, e.g. /api/youtube
+      const res = await fetch('/api/youtube');
+      if (!res.ok) return;
+      const items = await res.json(); // [{id, title, thumb, publishedAt}]
+      const grid = document.getElementById('episode-grid');
+      grid.innerHTML = items.map(v => `
+        <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener"
+           class="group block rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-sm">
+          <div class="aspect-video bg-gray-100 dark:bg-gray-900">
+            <img src="${v.thumb}" alt="${v.title}" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-base font-semibold group-hover:underline">${v.title}</h3>
+            <p class="mt-1 text-xs text-gray-600 dark:text-gray-400">${new Date(v.publishedAt).toLocaleDateString()}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // Instagram Graph API placeholder: inject recent posts into #reviews-grid
+    async function fetchInstagram() {
+      // Replace with your API endpoint or Worker route, e.g. /api/instagram
+      const res = await fetch('/api/instagram');
+      if (!res.ok) return;
+      const items = await res.json(); // [{id, caption, media_url, permalink}]
+      const grid = document.getElementById('reviews-grid');
+      grid.innerHTML = items.map(p => `
+        <a href="${p.permalink}" target="_blank" rel="noopener"
+           class="group block rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-sm">
+          <div class="aspect-square bg-gray-100 dark:bg-gray-900">
+            <img src="${p.media_url}" alt="Instagram review" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">${p.caption || ''}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    fetchYouTube().catch(console.error);
+    fetchInstagram().catch(console.error);
+  </script>
+
+
 </body>
 </html>
