@@ -1,66 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blink Of An Eye | Podcast & Reviews</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blink Of An Eye</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
+  <!-- Navigation -->
   <header>
-    <h1>Blink Of An Eye</h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="episodes/">Episodes</a>
-      <a href="reviews/">Reviews</a>
-      <a href="about/">About</a>
-    </nav>
+    <div class="nav-container">
+      <div class="logo">🔥 BOAE</div>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="episodes/">Episodes</a></li>
+          <li><a href="reviews/">Reviews</a></li>
+          <li><a href="soliloquies/">Soliloquies</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <section id="episodes">
-    <h2>Latest Episodes</h2>
-    <div id="youtube-feed"></div>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>🔥 Honest Voices. ⭐ Raw Reviews. 🚫 Unfiltered Conversations.</h1>
   </section>
 
-  <section id="reviews">
-    <h2>Latest Reviews</h2>
-    <div id="instagram-feed"></div>
+  <!-- Featured Video -->
+  <section class="featured-video">
+    <h2>Political Theatre</h2>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="Political Theatre"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
   </section>
 
+  <!-- Featured Episodes -->
+  <section class="episodes">
+    <h2>Featured Episodes</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="assets/img/mindfulness.jpg" alt="Modern Mindfulness" />
+        <h3>Modern Mindfulness</h3>
+      </div>
+      <div class="card">
+        <img src="assets/img/theatre.jpg" alt="Political Theatre" />
+        <h3>Political Theatre</h3>
+      </div>
+      <div class="card">
+        <img src="assets/img/creativity.jpg" alt="Living Creatively" />
+        <h3>Living Creatively</h3>
+      </div>
+      <div class="card">
+        <img src="assets/img/creativity.jpg" alt="Living Creatively" />
+        <h3>Living Creatively</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <h2>Reviews</h2>
+    <div class="review-grid">
+      <div class="review-card">
+        <h3>Oppenheimer</h3>
+        <p>"A crucial reminder of the dark veins running through human nature."</p>
+        <span>August 10, 2025</span>
+        <a href="#">Read →</a>
+      </div>
+      <div class="review-card">
+        <h3>Barbie</h3>
+        <p>"A vibrant insight into the many hues of creativity."</p>
+        <span>August 7, 2025</span>
+        <a href="#">Read →</a>
+      </div>
+      <div class="review-card">
+        <h3>Nolan’s PlayHouse</h3>
+        <p>"An ode to mystery, secrecy, and art."</p>
+        <span>July 21, 2025</span>
+        <a href="#">Read →</a>
+      </div>
+      <div class="review-card">
+        <h3>Toy Story 5</h3>
+        <p>"A nostalgic wave of freedom and friendship."</p>
+        <span>August 1, 2025</span>
+        <a href="#">Read →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Blink Of An Eye</p>
+    <p>&copy; 2025 Blink Of An Eye. All rights reserved.</p>
+    <button>Follow us</button>
   </footer>
-
-  <script>
-    // Fetch YouTube videos
-    fetch("/youtube")
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById("youtube-feed");
-        data.items.forEach(item => {
-          const videoId = item.id.videoId;
-          const iframe = document.createElement("iframe");
-          iframe.src = `https://www.youtube.com/embed/${videoId}`;
-          iframe.width = "320";
-          iframe.height = "180";
-          iframe.allowFullscreen = true;
-          container.appendChild(iframe);
-        });
-      });
-
-    // Fetch Instagram posts
-    fetch("/instagram")
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById("instagram-feed");
-        data.data.forEach(post => {
-          const img = document.createElement("img");
-          img.src = post.media_url;
-          img.alt = post.caption || "";
-          img.style.width = "200px";
-          container.appendChild(img);
-        });
-      });
-  </script>
 </body>
 </html>
