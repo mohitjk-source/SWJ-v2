@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blink Of An Eye | Podcast & Reviews</title>
 
-  <!-- ✅ Correct CSS link -->
+  <!-- ✅ Base tag ensures all relative paths resolve from site root -->
+  <base href="/">
+
+  <!-- CSS link now works consistently across all routes -->
   <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Basic SEO -->
@@ -20,16 +23,16 @@
     <h1>Blink Of An Eye</h1>
     <nav>
       <a href="/">Home</a>
-      <a href="/episodes">Episodes</a>
-      <a href="/reviews">Reviews</a>
-      <a href="/about">About</a>
+      <a href="episodes/">Episodes</a>
+      <a href="reviews/">Reviews</a>
+      <a href="about/">About</a>
     </nav>
   </header>
 
   <!-- Latest Episodes -->
   <section id="episodes">
     <h2>Latest Episodes</h2>
-    <!-- ✅ Example YouTube embed -->
+    <!-- Example YouTube embed -->
     <iframe width="560" height="315"
       src="https://www.youtube.com/embed/VIDEO_ID"
       title="YouTube video player"
