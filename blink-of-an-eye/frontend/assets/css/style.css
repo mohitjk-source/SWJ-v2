@@ -23,7 +23,7 @@ a:hover {
 }
 
 h1, h2, h3 {
-  color: #B6F83E;
+  color: #ffffff;
 }
 
 /* Navigation */
@@ -115,6 +115,11 @@ nav li a {
   max-width: 1100px;
   margin: 60px auto;
   padding: 0 20px;
+}
+
+.episodes a {
+  
+  color: #B6F83E;
 }
 
 .episodes h2 {
