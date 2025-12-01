@@ -49,7 +49,7 @@
         <h2 class="text-2xl font-bold">Latest episodes</h2>
         <a href="https://youtube.com/@soulwithoutjhol/videos" target="_blank" rel="noopener" class="text-sm hover:opacity-80">All videos</a>
       </div>
-      <div id="episode-grid" class="w-full h-full object-cover">
+      <div id="episode-grid" class="review-grid">
         <!-- Cards injected by fetchYouTube() -->
       </div>
     </div>
@@ -140,7 +140,7 @@
     <div class="review-card">
       <h3>${v.title}</h3>
       <div class="aspect-video bg-gray-100 dark:bg-gray-900">
-        <img src="${v.thumb}" alt="${v.title}" class="w-full h-full object-cover" loading="lazy">
+        <img src="${v.thumb}" alt="${v.title}" loading="lazy">
       </div>
       <span>${new Date(v.publishedAt).toLocaleDateString()}</span>
       <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">Watch →</a>
