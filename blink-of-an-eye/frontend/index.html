@@ -4,22 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blink Of An Eye</title>
- 
+
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="icon" type="image/png" href="images/favicon.png" sizes="32x32">
-<link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="shortcut icon" href="images/favicon.ico">
 </head>
 <body>
   <!-- Navigation -->
   <header>
     <div class="nav-container">
       <a href="/" class="logo">
-      <img src="images/logo.png" alt="Blink Of An Eye logo">
-      <span class="logo-text"></span>
-    </a>
-      <nav>
+        <img src="images/logo.png" alt="Blink Of An Eye logo">
+        <span class="logo-text"></span>
+      </a>
+      <nav aria-label="Main navigation">
         <ul>
-          <!--<li><a href="/">Home</a></li>     -->
           <li><a href="episodes/">Episodes</a></li>
           <li><a href="reviews/">Reviews</a></li>
           <li><a href="soliloquies/">Soliloquies</a></li>
@@ -28,70 +27,66 @@
     </div>
   </header>
 
- 
-
   <!-- Featured Video -->
   <section class="featured-video">
-    <h2>Soul Without Jhol Presents</h2>
+    <h2>soulwithoutjhol</h2>
     <div class="video-wrapper">
       <iframe
         src="https://www.youtube.com/embed/jPcQZXTtX4w"
         title="Political Theatre"
         frameborder="0"
         allowfullscreen
+        loading="lazy"
       ></iframe>
       <a href="https://youtube.com/@soulwithoutjhol/videos" target="_blank" rel="noopener" class="text-sm hover:opacity-80">All videos</a>
-      
     </div>
   </section>
-  <!-- Episodes (YouTube) -->
+
+  <!-- Latest Episodes (dynamic grid) -->
   <section id="episodes" class="episodes">
     <div class="container px-6 py-12">
       <div class="flex items-end justify-between">
         <h2 class="text-2xl font-bold">Latest episodes</h2>
- <!-- Grid populated by JS -->
-      <div id="episode-grid" class="episode-grid">
-        <!-- Cards injected by fetchYouTube() -->
-      </div>
-
         <a href="https://youtube.com/@soulwithoutjhol/videos" target="_blank" rel="noopener" class="text-sm hover:opacity-80">All videos</a>
       </div>
+      <div id="episode-grid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Cards injected by fetchYouTube() -->
       </div>
-      </section>
-   <!-- Hero -->
+    </div>
+  </section>
+
+  <!-- Hero -->
   <section class="hero">
     <h1>Honest Voices. Raw Reviews. Unfiltered Conversations.</h1>
   </section>
 
-
-  <!-- Featured Episodes -->
+  <!-- Featured Episodes (static cards) -->
   <section class="episodes">
     <h2>Episodes</h2>
-   
     <div class="card-grid">
       <div class="card">
-        <img src="images/mindfulness.jpg" alt="Modern Mindfulness" />
+        <img src="images/mindfulness.jpg" alt="Modern Mindfulness" loading="lazy" />
         <h3>Modern Mindfulness</h3>
       </div>
       <div class="card">
-        <img src="images/theatre.png" alt="Political Theatre" />
+        <img src="images/theatre.png" alt="Political Theatre" loading="lazy" />
         <h3>Political Theatre</h3>
       </div>
       <div class="card">
-        <img src="images/creativity.jpg" alt="Living Creatively" />
+        <img src="images/creativity.jpg" alt="Living Creatively" loading="lazy" />
         <h3>Living Creatively</h3>
       </div>
       <div class="card">
-        <img src="images/creativity.jpg" alt="Perspectives & Balance" />
+        <img src="images/creativity.jpg" alt="Perspectives & Balance" loading="lazy" />
         <h3>Perspectives & Balance</h3>
       </div>
-       
     </div>
   </section>
+
   <!-- Reviews -->
   <section class="reviews">
     <h2>Reviews</h2>
-    <div class="review-grid">
+    <div id="reviews-grid" class="review-grid">
       <div class="review-card">
         <h3>Oppenheimer</h3>
         <p>"A crucial reminder of the dark veins running through human nature."</p>
@@ -125,22 +120,25 @@
     <button>Follow us</button>
   </footer>
 
-<script>
+  <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // YouTube Data API placeholder: inject latest videos into #episode-grid
     async function fetchYouTube() {
-      // Replace with your API endpoint or Worker route, e.g. /api/youtube
-      const res = await fetch('/functions/youtube');
+      const res = await fetch('/youtube'); // Cloudflare Function route
       if (!res.ok) return;
-      const items = await res.json(); // [{id, title, thumb, publishedAt}]
+      const items = await res.json();
       const grid = document.getElementById('episode-grid');
+      if (!Array.isArray(items)) {
+        grid.innerHTML = "<p>No episodes available.</p>";
+        return;
+      }
       grid.innerHTML = items.map(v => `
         <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener"
            class="group block rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-sm">
           <div class="aspect-video bg-gray-100 dark:bg-gray-900">
-            <img src="${v.thumb}" alt="${v.title}" class="w-full h-full object-cover">
+            <img src="${v.thumb}" alt="${v.title}" class="w-full h-full object-cover" loading="lazy">
           </div>
           <div class="p-4">
             <h3 class="text-base font-semibold group-hover:underline">${v.title}</h3>
@@ -152,16 +150,16 @@
 
     // Instagram Graph API placeholder: inject recent posts into #reviews-grid
     async function fetchInstagram() {
-      // Replace with your API endpoint or Worker route, e.g. /api/instagram
-      const res = await fetch('/functions/instagram');
+      const res = await fetch('/instagram'); // Cloudflare Function route
       if (!res.ok) return;
-      const items = await res.json(); // [{id, caption, media_url, permalink}]
+      const items = await res.json();
       const grid = document.getElementById('reviews-grid');
-      grid.innerHTML = items.map(p => `
+      if (!Array.isArray(items)) return;
+      grid.innerHTML += items.map(p => `
         <a href="${p.permalink}" target="_blank" rel="noopener"
            class="group block rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-sm">
           <div class="aspect-square bg-gray-100 dark:bg-gray-900">
-            <img src="${p.media_url}" alt="Instagram review" class="w-full h-full object-cover">
+            <img src="${p.media_url}" alt="Instagram review" class="w-full h-full object-cover" loading="lazy">
           </div>
           <div class="p-4">
             <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">${p.caption || ''}</p>
@@ -173,7 +171,5 @@
     fetchYouTube().catch(console.error);
     fetchInstagram().catch(console.error);
   </script>
-
-
 </body>
 </html>
