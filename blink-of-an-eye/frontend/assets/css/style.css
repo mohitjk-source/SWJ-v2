@@ -49,12 +49,12 @@ header {
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  background-color: #B6F83E;
+  
 }
 
 .logo img {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   display: block;
   background-color: #B6F83E;
 }
@@ -241,7 +241,7 @@ footer button:hover {
 
 /* Responsive tweaks */
 @media (max-width: 400px) {
-  .logo img { height: 200px; }
+  .logo img { height: 100px; }
   .logo-text { font-size: 1.2rem; }
   nav ul { gap: 20px; }
   .video-wrapper iframe { height: 400px; }
