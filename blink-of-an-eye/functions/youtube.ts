@@ -4,7 +4,7 @@ export async function onRequest(context: EventContext<Env, any, any>) {
   const uploadsPlaylist = "PL_6j7S4y5BHgMWvFWghGwAZsOrCQFe-9e"; // uploads playlist ID
 
   const res = await fetch(
-    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylist}&channelId=${channelId}&maxResults=4&key=${apiKey}`
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylist}&channelId=${channelId}&maxResults=3&key=${apiKey}`
   );
   const data = await res.json();
 
